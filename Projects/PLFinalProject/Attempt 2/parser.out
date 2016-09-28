@@ -1,0 +1,353 @@
+Created by PLY version 3.8 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    NE_OP
+    PRCNT
+    CLSTRING
+    PIPE
+    ELSE
+    CLFLOAT
+    IF
+    EQ_OP
+    BANG
+    LPAREN
+    LE_OP
+    FOR
+    TRUE
+    RPAREN
+    OBJECT
+    LT_OP
+    LAMBDA
+    ELEM
+    RBRACE
+    VOID
+    LIST
+    AND_OP
+    LBRACE
+    MAP_TO
+    OR_OP
+    SEMI
+    IFF
+    REV_DIV
+    RETURN
+    SQUOTE
+    IDENTIFIER
+    RCURLY
+    COMMA
+    GT_OP
+    LCURLY
+    GE_OP
+    TUPLE
+    NIL
+    BOOL
+    STRING
+    FALSE
+    WHILE
+
+Grammar
+
+Rule 0     S' -> call
+Rule 1     call -> declaration
+Rule 2     call -> oper
+Rule 3     oper -> INT ID INT
+Rule 4     oper -> FLOAT ID FLOAT
+Rule 5     oper -> ID ID INT
+Rule 6     oper -> ID ID ID
+Rule 7     oper -> INT ID ID
+Rule 8     declaration -> VAR ID EQUALS num
+Rule 9     declaration -> LET ID EQUALS num
+Rule 10    declaration -> LET ID EQUALS TEXT
+Rule 11    declaration -> VAR ID EQUALS TEXT
+Rule 12    num -> INT
+Rule 13    num -> FLOAT
+
+Terminals, with rules where they appear
+
+AND_OP               : 
+BANG                 : 
+BOOL                 : 
+CLFLOAT              : 
+CLSTRING             : 
+COMMA                : 
+ELEM                 : 
+ELSE                 : 
+EQUALS               : 8 9 10 11
+EQ_OP                : 
+FALSE                : 
+FLOAT                : 4 4 13
+FOR                  : 
+GE_OP                : 
+GT_OP                : 
+ID                   : 3 4 5 5 6 6 6 7 7 8 9 10 11
+IDENTIFIER           : 
+IF                   : 
+IFF                  : 
+INT                  : 3 3 5 7 12
+LAMBDA               : 
+LBRACE               : 
+LCURLY               : 
+LET                  : 9 10
+LE_OP                : 
+LIST                 : 
+LPAREN               : 
+LT_OP                : 
+MAP_TO               : 
+NE_OP                : 
+NIL                  : 
+OBJECT               : 
+OR_OP                : 
+PIPE                 : 
+PRCNT                : 
+RBRACE               : 
+RCURLY               : 
+RETURN               : 
+REV_DIV              : 
+RPAREN               : 
+SEMI                 : 
+SQUOTE               : 
+STRING               : 
+TEXT                 : 10 11
+TRUE                 : 
+TUPLE                : 
+VAR                  : 8 11
+VOID                 : 
+WHILE                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+call                 : 0
+declaration          : 1
+num                  : 8 9
+oper                 : 2
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . call
+    (1) call -> . declaration
+    (2) call -> . oper
+    (8) declaration -> . VAR ID EQUALS num
+    (9) declaration -> . LET ID EQUALS num
+    (10) declaration -> . LET ID EQUALS TEXT
+    (11) declaration -> . VAR ID EQUALS TEXT
+    (3) oper -> . INT ID INT
+    (4) oper -> . FLOAT ID FLOAT
+    (5) oper -> . ID ID INT
+    (6) oper -> . ID ID ID
+    (7) oper -> . INT ID ID
+
+    VAR             shift and go to state 2
+    LET             shift and go to state 7
+    INT             shift and go to state 4
+    FLOAT           shift and go to state 1
+    ID              shift and go to state 8
+
+    declaration                    shift and go to state 3
+    call                           shift and go to state 5
+    oper                           shift and go to state 6
+
+state 1
+
+    (4) oper -> FLOAT . ID FLOAT
+
+    ID              shift and go to state 9
+
+
+state 2
+
+    (8) declaration -> VAR . ID EQUALS num
+    (11) declaration -> VAR . ID EQUALS TEXT
+
+    ID              shift and go to state 10
+
+
+state 3
+
+    (1) call -> declaration .
+
+    $end            reduce using rule 1 (call -> declaration .)
+
+
+state 4
+
+    (3) oper -> INT . ID INT
+    (7) oper -> INT . ID ID
+
+    ID              shift and go to state 11
+
+
+state 5
+
+    (0) S' -> call .
+
+
+
+state 6
+
+    (2) call -> oper .
+
+    $end            reduce using rule 2 (call -> oper .)
+
+
+state 7
+
+    (9) declaration -> LET . ID EQUALS num
+    (10) declaration -> LET . ID EQUALS TEXT
+
+    ID              shift and go to state 12
+
+
+state 8
+
+    (5) oper -> ID . ID INT
+    (6) oper -> ID . ID ID
+
+    ID              shift and go to state 13
+
+
+state 9
+
+    (4) oper -> FLOAT ID . FLOAT
+
+    FLOAT           shift and go to state 14
+
+
+state 10
+
+    (8) declaration -> VAR ID . EQUALS num
+    (11) declaration -> VAR ID . EQUALS TEXT
+
+    EQUALS          shift and go to state 15
+
+
+state 11
+
+    (3) oper -> INT ID . INT
+    (7) oper -> INT ID . ID
+
+    INT             shift and go to state 16
+    ID              shift and go to state 17
+
+
+state 12
+
+    (9) declaration -> LET ID . EQUALS num
+    (10) declaration -> LET ID . EQUALS TEXT
+
+    EQUALS          shift and go to state 18
+
+
+state 13
+
+    (5) oper -> ID ID . INT
+    (6) oper -> ID ID . ID
+
+    INT             shift and go to state 19
+    ID              shift and go to state 20
+
+
+state 14
+
+    (4) oper -> FLOAT ID FLOAT .
+
+    $end            reduce using rule 4 (oper -> FLOAT ID FLOAT .)
+
+
+state 15
+
+    (8) declaration -> VAR ID EQUALS . num
+    (11) declaration -> VAR ID EQUALS . TEXT
+    (12) num -> . INT
+    (13) num -> . FLOAT
+
+    TEXT            shift and go to state 23
+    INT             shift and go to state 24
+    FLOAT           shift and go to state 21
+
+    num                            shift and go to state 22
+
+state 16
+
+    (3) oper -> INT ID INT .
+
+    $end            reduce using rule 3 (oper -> INT ID INT .)
+
+
+state 17
+
+    (7) oper -> INT ID ID .
+
+    $end            reduce using rule 7 (oper -> INT ID ID .)
+
+
+state 18
+
+    (9) declaration -> LET ID EQUALS . num
+    (10) declaration -> LET ID EQUALS . TEXT
+    (12) num -> . INT
+    (13) num -> . FLOAT
+
+    TEXT            shift and go to state 26
+    INT             shift and go to state 24
+    FLOAT           shift and go to state 21
+
+    num                            shift and go to state 25
+
+state 19
+
+    (5) oper -> ID ID INT .
+
+    $end            reduce using rule 5 (oper -> ID ID INT .)
+
+
+state 20
+
+    (6) oper -> ID ID ID .
+
+    $end            reduce using rule 6 (oper -> ID ID ID .)
+
+
+state 21
+
+    (13) num -> FLOAT .
+
+    $end            reduce using rule 13 (num -> FLOAT .)
+
+
+state 22
+
+    (8) declaration -> VAR ID EQUALS num .
+
+    $end            reduce using rule 8 (declaration -> VAR ID EQUALS num .)
+
+
+state 23
+
+    (11) declaration -> VAR ID EQUALS TEXT .
+
+    $end            reduce using rule 11 (declaration -> VAR ID EQUALS TEXT .)
+
+
+state 24
+
+    (12) num -> INT .
+
+    $end            reduce using rule 12 (num -> INT .)
+
+
+state 25
+
+    (9) declaration -> LET ID EQUALS num .
+
+    $end            reduce using rule 9 (declaration -> LET ID EQUALS num .)
+
+
+state 26
+
+    (10) declaration -> LET ID EQUALS TEXT .
+
+    $end            reduce using rule 10 (declaration -> LET ID EQUALS TEXT .)
+

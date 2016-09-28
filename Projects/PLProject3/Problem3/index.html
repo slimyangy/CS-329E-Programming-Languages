@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="register.css">
+    <script type="text/javascript" src="register.js"></script>
+</head>
+
+<body>
+<main>
+    <h1>Hello! This is the Person Application!</h1>
+    <form action="register_account.html" method="get"
+        name="registration_form" id="registration_form">
+
+
+        <label for="first_name">First Name: </label>
+            <input type="text" name="first_name" id="first_name">
+            <br>
+
+        <label for="last_name">Last Name: </label>
+            <input type="text" name="last_name" id="last_name">
+            <br>
+
+        <label for="email">Valid Email: </label>
+            <input type="text" name="email" id="email">
+            <br>
+
+        <label for="customer_number">Customer Number (type NA if not customer):  </label>
+            <input type="text" name="customer_number" id="customer_number">
+            <br>
+            <br><br>
+
+        <label for="social_security_number">Employee SSN Number (type NA if not employee): </label>
+        <input type="text" name="social_security_number" id="social_security_number">
+            <br>
+            <br>
+            <br>
+        <label>Choose your position: </label>
+        <input type="radio" name="position" id="customer" value="customer" checked>Customer
+        <input type="radio" name="position" id="employee" value="employee">Employee
+        <br>
+        <br>
+
+        <input type="button" id="register" value="Register">
+        <input type="button" id="reset_form" value="Reset">
+
+    </form>
+    <h2 id="registration_header">&nbsp;</h2>
+    <table id="registration_info"></table>
+</main>
+</html>
